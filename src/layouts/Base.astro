@@ -1,0 +1,71 @@
+---
+import '../styles/global.css';
+const { title } = Astro.props;
+---
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} — Michael</title>
+</head>
+<body>
+<header>
+    <nav>
+        <a href="/" class="logo">Michael</a>
+        <ul>
+            <li><a href="/about">About</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <slot />
+</main>
+
+<footer>
+    <p>© 2026 Michael</p>
+</footer>
+</body>
+</html>
+
+<style>
+    header {
+        padding: 1.5rem 2rem;
+        border-bottom: 1px solid #eee;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .logo {
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+    }
+
+    main {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+    }
+
+    footer {
+        text-align: center;
+        padding: 2rem;
+        color: #888;
+        font-size: 0.9rem;
+        border-top: 1px solid #eee;
+    }
+</style>

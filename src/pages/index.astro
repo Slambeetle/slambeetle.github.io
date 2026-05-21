@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Home">
+	<section class="hero">
+		<h1>Hi, I'm Slambeetle</h1>
+		<p>I'm a web developer based in Sydney. I build clean, simple things for the web.</p>
+		<div class="links">
+			<a href="/projects">See my work</a>
+			<a href="/contact">Get in touch</a>
+		</div>
+	</section>
+</Base>
+
+<style>
+	.hero {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		padding: 4rem 0;
+	}
+
+	h1 {
+		font-size: 3rem;
+		line-height: 1.2;
+	}
+
+	p {
+		font-size: 1.2rem;
+		color: #555;
+		max-width: 500px;
+	}
+
+	.links {
+		display: flex;
+		gap: 1.5rem;
+		margin-top: 1rem;
+	}
+
+	.links a {
+		padding: 0.6rem 1.2rem;
+		border: 1px solid #111;
+		border-radius: 4px;
+		font-size: 0.95rem;
+	}
+
+	.links a:hover {
+		background: #111;
+		color: #fff;
+		text-decoration: none;
+	}
+</style>

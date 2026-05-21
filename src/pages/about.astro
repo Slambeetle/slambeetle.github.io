@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="About">
+    <section class="about">
+        <h1>About Me</h1>
+        <div class="bio">
+            <p>Hi, I'm Michael. I'm a web developer based in Sydney with a passion for building clean, simple things for the web.</p>
+            <p>I have experience in HTML, CSS, and JavaScript, and I'm currently learning modern frontend tooling like Astro.</p>
+        </div>
+
+        <div class="details">
+            <div class="detail-item">
+                <h2>Skills</h2>
+                <ul>
+                    <li>HTML & CSS</li>
+                    <li>JavaScript</li>
+                    <li>Astro</li>
+                </ul>
+            </div>
+
+            <div class="detail-item">
+                <h2>Currently Learning</h2>
+                <ul>
+                    <li>Astro</li>
+                    <li>Git & GitHub</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</Base>
+
+<style>
+    .about {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .bio {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 600px;
+        color: #444;
+        font-size: 1.1rem;
+    }
+
+    .details {
+        display: flex;
+        gap: 4rem;
+    }
+
+    h2 {
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #888;
+        margin-bottom: 1rem;
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+</style>

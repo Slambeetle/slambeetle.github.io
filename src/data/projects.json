@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Project One",
+    "description": "A short description of what this project is and what you built it with.",
+    "url": "https://github.com/Slambeetle",
+    "tags": ["HTML", "CSS", "JavaScript"]
+  },
+  {
+    "title": "Project Two",
+    "description": "A short description of what this project is and what you built it with.",
+    "url": "https://github.com/Slambeetle",
+    "tags": ["Astro", "CSS"]
+  }
+]
