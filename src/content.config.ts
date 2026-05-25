@@ -2,9 +2,9 @@ import { defineCollection } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-const blog = defineCollection({
+const projects = defineCollection({
     // Load Markdown files in the src/content directory.
-    loader: glob({ base: './src/content/work', pattern: '**/*.{md,mdx}' }),
+    loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/projects" }),
     schema: z.object({
         title: z.string(),
         description: z.string(),
@@ -15,4 +15,4 @@ const blog = defineCollection({
     }),
 });
 
-export const collections = { blog }
+export const collections = { projects }
