@@ -8,10 +8,16 @@ const projects = defineCollection({
     schema: z.object({
         title: z.string(),
         description: z.string(),
+        year: z.number(),
+        type: z.string(),
+        studio: z.string(),
         publishDate: z.coerce.date(),
-        tags: z.array(z.string()),
-        img: z.string(),
-        img_alt: z.string().optional(),
+        images: z.array(
+            z.object({
+                src: z.string(),
+                alt: z.string().optional(),
+            })
+        ),
     }),
 });
 

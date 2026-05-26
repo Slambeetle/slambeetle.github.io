@@ -1,16 +1,33 @@
 ---
-title: Sonder
-publishDate: 2020-03-04 00:00:00
-img: /assets/sonder.jpg
-img_alt: Pearls of silky soft white cotton, bubble up under vibrant lighting
+title: Sonder, Vivid
 description: |
   We developed a virtual showcase for the softest bedding imaginable.
-tags:
-  - Design
-  - Dev
-  - Branding
+year: 2023
+type:  Public Art
+studio: Self Produced
+publishDate: 2020-03-04 00:00:00
+images: 
+  - src: /assets/sonder-850.jpg
+    alt: looking up into the installations curving lights
+  - src: /assets/Artists.png
+    alt: the artists of the Sonder project
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur posuere commodo venenatis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam non ligula vel metus efficitur hendrerit. In hac habitasse platea dictumst. Praesent et mauris ut mi dapibus semper. Curabitur tortor justo, efficitur sit amet pretium cursus, porta eget odio. Cras ac venenatis dolor. Donec laoreet posuere malesuada. Curabitur nec mi tempor, placerat leo sit amet, tincidunt est. Quisque pellentesque venenatis magna, eget tristique nibh pulvinar in. Vestibulum vitae volutpat arcu. Aenean ut malesuada odio, sit amet pellentesque odio. Suspendisse nunc elit, blandit nec hendrerit non, aliquet at magna. Donec id leo ut nulla sagittis sodales.
+> With each passing moment, We realise, We are not alone. Every random passerby Is living a life As colouful And complex As our own. Through shared experiences, We form connections, Enriching both our lives
 
-Integer vitae nibh elit. Suspendisse eget urna eu neque bibendum pharetra. Sed interdum lectus sem, in pulvinar magna dignissim vel. Quisque maximus at urna nec laoreet. Suspendisse potenti. Vestibulum rhoncus sem ut mi pellentesque, in vestibulum erat blandit. Aliquam sodales dui ac maximus consectetur. Duis quis est vehicula, imperdiet nisl nec, fermentum erat. Duis tortor diam, pharetra eu euismod in, vehicula non eros. Curabitur facilisis dui at erat ultrices gravida. In at nunc ultricies, pulvinar mi vel, sagittis mauris. Praesent pharetra posuere purus ac imperdiet. Nulla facilisi.
+***
+
+##### Location
+As a central convergence point within the CBD, Circular Quay has the unique ability to connect people across inner and greater Sydney in one central location. Whether arriving from a bus, train, ferry, light rail or through casual exploration, you arrive and become part of a central hub of activity. As a threshold into Circular Quay, the location frames the harbour arrival from the south, creating a catalyst for you to pause and contemplate the lives of those moving around you, each as an individual yet intrinsically connected.
+![Location](/assets/City-Plan.jpg "Location")
+
+##### Connections
+‘Sonder’ is an inclusive artwork, providing an opportunity for all to enjoy and interact with. Situated in a highly trafficable area, its permeability has been carefully curated to ensure both day and night activation. As a beacon of light, individual’s are drawn into the space from afar, experiencing the true scale of the artwork once immersed within the emanating swirls of light.
+![Accessibilty](/assets/Accessiblilty.jpg "Accessibilty")
+
+##### Installation
+Upon approach, you witness pulses of light above, spawning from a series of grounded ‘communities.’ They diverge from these centralised hubs across a series of swirls in the canopy above you. These suspended illuminated threads, weave through the air in their own journey, drawing a parallel to the unique individuals, which surround you in the day to day.
+
+##### Animation
+Our lives are not static, we move through life. We were cocooned in and now we spring back, alive and with every step, together, we bring back our communities momentum through life. 
+By incorporating sensors into the footings or mesh above, the artwork reacts to those around it, pulsing with light when approaching. Their light rises up into the vortex of other people’s lives, flowing with them, forming their own journey.
