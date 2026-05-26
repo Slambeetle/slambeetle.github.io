@@ -1,7 +1,9 @@
 ---
 import { type CollectionEntry, getCollection, render } from "astro:content";
 import Base from "../../layouts/Base.astro";
-import Article from "../../layouts/Article.astro";
+import ProjectNavigation from "../../layouts/Project-Navigation.astro";
+import ProjectTitle from "../../layouts/Project-Title.astro";
+import ProjectContent from "../../layouts/Project-Content.astro";
 
 interface Props {
     entry: CollectionEntry<'projects'>
@@ -20,32 +22,24 @@ const { Content, headings} = await render(entry);
 ---
 
 <Base title={entry.data.title}>
-    <div class="content-container">
-        <div class="section" id="image-section">
+    <div class="project-content-container">
+        <div class="project-section" id="image-section">
             {entry.data.images.map((img, i) => (
                     <div class="carousel-slide" data-index={i}>
                         <img src={img.src} alt={img.alt} />
                     </div>
             ))}
         </div>
-        <div class="section" id="title-section">
-            <div class="section-inner">
-                <div class="title-section-item">
-                    <h2 class="title">{entry.data.title}</h2>
-                </div>
-                <div class="title-section-item">
-                    <ul class="information-items">
-                        <li>{entry.data.year}</li>
-                        <li>{entry.data.type}</li>
-                        <li>{entry.data.studio}</li>
-                    </ul>
-                </div>
-                <div class="title-section-item">
-                    <div class="content">
-                        <Article headings={headings}>
-                            <Content />
-                        </Article>
+        <div class="project-section">
+            <div class="project-section-inner">
+                <div class="project-content">
+                    <div class="project-inner-content">
+                        <ProjectTitle entry={entry.data}></ProjectTitle>
+                        <ProjectContent>
+                            <Content/>
+                        </ProjectContent>
                     </div>
+                    <ProjectNavigation title={entry.data.title} headings={headings}></ProjectNavigation>
                 </div>
             </div>
         </div>
@@ -53,94 +47,49 @@ const { Content, headings} = await render(entry);
 </Base>
 
 <style>
-    .content-container {
+    .project-content-container {
         display: flex;
         height: calc(100vh - var(--nav-height));
         overflow: hidden;
     }
 
-    .section {
+    .project-section {
         flex: 1;
         height: 100%;
         overflow-y: auto;
     }
 
-    .section img {
+    .project-section img {
         width: 100%;
         height: auto;
         display: block;
     }
 
-    .section-inner {
-        padding: 3rem;
+    .project-section-inner {
+        padding: 4rem 3rem 3rem 3rem;
     }
 
-    .layout {
+    .project-content {
         display: grid;
-        grid-template-columns: 200px 1fr;
+        grid-template-columns: 1fr 200px;
+        gap: 2rem;
+        align-items: start;
+    }
+
+    .project-inner-content {
+        display: grid;
+        grid-column: 1;
         gap: 2rem;
     }
 
-    .toc {
-        position: sticky;
-        top: 1rem;
-        height: fit-content;
-    }
+    @media (max-width: 100em) {
+        .project-content {
+            display: block;
+        }
 
-    .title-section-item {
-        padding-bottom: 50px;
-    }
-
-    .title{
-        margin-top:100px;
-    }
-
-    .information-items {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: left;
-        gap: 2rem;
-        list-style: none;
-    }
-
-    .information-items li{
-        display: inline-block;
-        color: var(--gray-0);
-        text-decoration: none;
-        font-size: var(--text-base);
-        padding-right:2rem;
-        line-height: 1;
-    }
-
-    .information-items li:not(:last-child) {
-        border-right:1px solid var(--gray-400);
-    }
-
-    .content :global(*) {
-        line-height: 1.25;
-        margin: 1rem 0 1rem 0;
-    }
-
-    .content :global(blockquote) {
-        font-size: var(--text-lg);
-    }
-
-    .content :global(h5) {
-        margin-top: 4rem;
-    }
-
-    .content :global(img) {
-        display: block;
-    }
-
-    .content :global(hr) {
-        margin: 4rem 0 0 0;
-        height: 1px;
-        color: var(--gray-300);
-        background: var(--gray-300);
-        font-size: 0;
-        border: 0;
+        .project-inner-navigation {
+            display: none;
+        }
     }
 
     #image-section:first-child{
@@ -154,17 +103,16 @@ const { Content, headings} = await render(entry);
         display: block;
     }
 
-    /* Switch to vertical stack below 768px */
-    @media (max-width: 768px) {
-        .content-container {
+    @media (max-width: 50em) {
+        .project-content-container {
             flex-direction: column;
-            height: auto;        /* let content define the height */
-            overflow: hidden;    /* can remove this too if you want */
+            height: auto;
+            overflow: hidden;
         }
 
-        .section {
-            height: auto;        /* no longer splitting the viewport */
-            overflow-y: visible; /* let the page scroll naturally */
+        .project-section {
+            height: auto;
+            overflow-y: visible;
         }
     }
 </style>

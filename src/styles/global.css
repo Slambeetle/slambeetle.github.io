@@ -1,17 +1,17 @@
 /* Global variables */
 :root {
     /* Colors */
-    --gray-0: #090b11;
-    --gray-50: #141925;
-    --gray-100: #283044;
-    --gray-200: #3d4663;
-    --gray-300: #505d84;
-    --gray-400: #6474a2;
-    --gray-500: #8490b5;
-    --gray-600: #a3acc8;
-    --gray-700: #c3cadb;
-    --gray-800: #e3e6ee;
-    --gray-900: #f3f4f7;
+    --gray-0: #000000;
+    --gray-50: #111111;
+    --gray-100: #222222;
+    --gray-200: #333333;
+    --gray-300: #444444;
+    --gray-400: #555555;
+    --gray-500: #666666;
+    --gray-600: #777777;
+    --gray-700: #888888;
+    --gray-800: #999999;
+    --gray-900: #aaaaaa;
     --gray-999-basis: 0, 0%, 100%;
     --gray-999_40: hsla(var(--gray-999-basis), 0.4);
     --gray-999: #ffffff;
@@ -81,18 +81,18 @@
 
 :root.theme-dark {
     --gray-0: #ffffff;
-    --gray-50: #f3f4f7;
-    --gray-100: #e3e6ee;
-    --gray-200: #c3cadb;
-    --gray-300: #a3acc8;
-    --gray-400: #8490b5;
-    --gray-500: #6474a2;
-    --gray-600: #505d84;
-    --gray-700: #3d4663;
-    --gray-800: #283044;
-    --gray-900: #141925;
+    --gray-50: #dddddd;
+    --gray-100: #aaaaaa;
+    --gray-200: #999999;
+    --gray-300: #888888;
+    --gray-400: #777777;
+    --gray-500: #666666;
+    --gray-600: #555555;
+    --gray-700: #444444;
+    --gray-800: #333333;
+    --gray-900: #222222;
     --gray-999-basis: 225, 31%, 5%;
-    --gray-999: #090b11;
+    --gray-999: #111111;
 
     --accent-light: #1c0056;
     --accent-regular: #7611a6;
@@ -313,7 +313,7 @@ body {
 
 body {
     background-color: var(--gray-999);
-    color: var(--gray-200);
+    color: var(--gray-0);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     line-height: 1.5;

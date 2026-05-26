@@ -1,0 +1,87 @@
+---
+interface Props {
+    title: string;
+    headings: { depth: number; slug: string; text: string }[];
+}
+
+const { title, headings } = Astro.props;
+---
+
+<div class="project-navigation-wrapper">
+    <aside>
+        <nav>
+            <ul class="project-navigation">
+                <li><a href={`#${title}`} class="depth-5">{title}</a></li>
+                {headings.map(h => (
+                       <li>
+                           <a href={`#${h.slug}`} class={`depth-${h.depth}`}>{h.text}</a>
+                       </li>
+                ))}
+            </ul>
+        </nav>
+    </aside>
+</div>
+<script>
+    const headings = document.querySelectorAll('article h5');
+    const links = document.querySelectorAll('.project-navigation a');
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                links.forEach(l => l.classList.remove('active'));
+                const active = document.querySelector(`.project-navigation a[href="#${entry.target.id}"]`);
+                active?.classList.add('active');
+            }
+        });
+    }, { rootMargin: '0px 0px -80% 0px' });
+
+    headings.forEach(h => observer.observe(h));
+</script>
+<style>
+    .project-navigation-wrapper {
+        position: sticky;
+        height: fit-content;
+        top: 1rem;
+    }
+
+    @media (max-width: 100em) {
+        .project-navigation-wrapper {
+            display: none;
+        }
+    }
+
+    nav {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .project-navigation {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.4rem;
+    }
+
+    .project-navigation li {
+        display: block;
+    }
+
+    .project-navigation a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .project-navigation a.active {
+        font-weight: bold;
+        color: var(--accent);
+    }
+
+    /* Indent depth levels */
+    .project-navigation a.depth-2 { padding-right: 0; }
+    .project-navigation a.depth-3 { padding-right: 1rem; }
+    .project-navigation a.depth-4 { padding-right: 2rem; }
+
+</style>

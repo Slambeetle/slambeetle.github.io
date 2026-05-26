@@ -1,0 +1,53 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+    entry: CollectionEntry<'projects'>['data'];
+}
+
+const { entry } = Astro.props;
+---
+<div class="title-section">
+    <div class="title-section-item">
+        <h2 class="title">{entry.title}</h2>
+    </div>
+    <div class="title-section-item">
+        <ul class="information-items">
+            <li>{entry.year}</li>
+            <li>{entry.type}</li>
+            <li>{entry.studio}</li>
+        </ul>
+    </div>
+</div>
+
+<style>
+    .title-section-item {
+        padding-bottom: 50px;
+    }
+
+    .title{
+        margin-top:20rem;
+    }
+
+    .information-items {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: left;
+        gap: 2rem;
+        list-style: none;
+    }
+
+    .information-items li{
+        display: inline-block;
+        color: var(--gray-0);
+        text-decoration: none;
+        font-size: var(--text-base);
+        padding-right:2rem;
+        line-height: 1;
+    }
+
+    .information-items li:not(:last-child) {
+        border-right:1px solid var(--gray-400);
+    }
+</style>
