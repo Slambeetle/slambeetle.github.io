@@ -1,0 +1,87 @@
+---
+interface Props {
+    statistics: Array<{
+        stat: string | number;
+        name: string;
+    }>;
+}
+
+const { statistics } = Astro.props;
+---
+
+<div class="statistics-container">
+    <div class="statistics-grid">
+        {statistics.map((item, index) => (
+                <div class="statistic-item">
+                    <div class="stat-value">{item.stat}</div>
+                    <div class="stat-name">{item.name}</div>
+                    {index < statistics.length - 1 && <div class="divider"></div>}
+                </div>
+        ))}
+    </div>
+</div>
+
+<style>
+    .statistics-container {
+        width: 100%;
+    }
+
+    .statistics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 0;
+        align-items: center;
+        position: relative;
+    }
+
+    .statistic-item {
+        position: relative;
+        display: flex;
+        width:100%;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .stat-value {
+        font-size: clamp(1.75rem, 5vw, 3rem);
+        font-weight: 700;
+        line-height: 1.2;
+        color: white;
+    }
+
+    .stat-name {
+        font-size: 0.875rem;
+        color: white;
+    }
+
+    .divider {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1px;
+        height: 40%;
+        background: var(--gray-999);
+    }
+
+    @media (max-width: 768px) {
+        .statistics-grid {
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        }
+
+        .statistic-item {
+            padding: 1rem 1.5rem;
+        }
+
+        .stat-value {
+            font-size: clamp(1.5rem, 4vw, 2.25rem);
+        }
+
+        .stat-name {
+            font-size: 0.75rem;
+        }
+    }
+</style>

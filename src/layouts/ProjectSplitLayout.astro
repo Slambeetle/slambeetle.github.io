@@ -1,0 +1,157 @@
+---
+import { type CollectionEntry } from "astro:content";
+import Base from "./Base.astro";
+import ProjectNavigation from "../components/project-navigation.astro";
+import ProjectTitle from "../components/project-title.astro";
+import ImageStack from "../components/image-stack.astro";
+import ImageCarousel from "../components/image-carousel.astro";
+
+interface Props {
+    entry: CollectionEntry<'projects'>;
+    headings: { depth: number; slug: string; text: string }[];
+}
+
+const { entry, headings } = Astro.props;
+---
+
+<Base title={entry.data.title}>
+    <div class="project-content-container">
+        <div class="project-section" id="image-section">
+            <div class="desktop-only">
+                <ImageStack images={entry.data.images} />
+            </div>
+            <div class="mobile-only">
+                <ImageCarousel images={entry.data.images} />
+            </div>
+        </div>
+        <div class="project-section">
+            <div class="project-section-inner">
+                <div class="project-content-wrapper">
+                    <div class="project-inner-content">
+                        <ProjectTitle entry={entry.data}></ProjectTitle>
+                        <article class="project-content">
+                            <slot />
+                        </article>
+                    </div>
+                    <ProjectNavigation title={entry.data.title} headings={headings}></ProjectNavigation>
+                </div>
+            </div>
+        </div>
+    </div>
+</Base>
+
+<style>
+    .project-content-container {
+        display: flex;
+        height: calc(100vh - var(--nav-height));
+        overflow: hidden;
+    }
+
+    .project-section img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+
+    .project-section {
+        flex: 1;
+        height: 100%;
+        overflow-y: auto;
+    }
+
+    .project-section-inner {
+        padding: 4rem;
+    }
+
+    .project-content-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 200px;
+        gap: 2rem;
+        align-items: start;
+    }
+
+    .project-inner-content {
+        display: grid;
+        grid-column: 1;
+        gap: 1rem;
+    }
+
+    :global(.section-grid) {
+        display: grid;
+        margin-top: 1rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    :global(.section-grid img) {
+        grid-column: 1 / -1;
+        width: 100%;
+    }
+
+    .project-content :global(.quote) {
+        font-size: var(--text-xl);
+        line-height: 1.2;
+    }
+
+    .project-content :global(p) {
+        margin-bottom: 0.5em;
+    }
+
+    .project-content :global(img) {
+        display: block;
+        margin: 1rem 0 1rem 0;
+    }
+
+    .project-content :global(hr) {
+        margin: 4rem 0 4rem 0;
+        height: 1px;
+        color: var(--gray-300);
+        background: var(--gray-300);
+        font-size: 0;
+        border: 0;
+    }
+
+    @media (max-width: 100em) {
+        .project-content-wrapper {
+            display: block;
+        }
+
+        .project-inner-navigation {
+            display: none;
+        }
+
+        :global(.section-grid) {
+            display: block;
+        }
+    }
+
+    .desktop-only {
+        display: block;
+    }
+    .mobile-only {
+        display: none;
+    }
+
+    @media (max-width: 75em) {
+        .project-content-container {
+            flex-direction: column;
+            height: auto;
+            overflow: hidden;
+        }
+
+        .project-section {
+            flex: 1;
+            width: 100%;
+            height: auto;
+            overflow-y: visible;
+        }
+
+        .project-section-inner {
+            padding: 1rem;
+        }
+
+        .desktop-only { display: none; }
+        .mobile-only  { display: block; }
+    }
+</style>

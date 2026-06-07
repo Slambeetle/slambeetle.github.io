@@ -5,25 +5,29 @@ interface Props {
 }
 
 const { title, headings } = Astro.props;
+const titleSlug = title.toLowerCase().replace(/\s+/g, '-');
+
 ---
 
-<div class="project-navigation-wrapper">
-    <aside>
-        <nav>
-            <ul class="project-navigation">
-                <li><a href={`#${title}`} class="depth-5">{title}</a></li>
-                {headings.map(h => (
-                       <li>
-                           <a href={`#${h.slug}`} class={`depth-${h.depth}`}>{h.text}</a>
-                       </li>
-                ))}
-            </ul>
-        </nav>
-    </aside>
-</div>
+<aside>
+    <nav>
+        <ul class="project-navigation">
+            <li><a href={`#${titleSlug}`} class="title-link">{title}</a></li>
+            {headings.map(h => (
+                   <li>
+                       <a href={`#${h.slug}`}>{h.text}</a>
+                   </li>
+            ))}
+        </ul>
+    </nav>
+</aside>
 <script>
     const headings = document.querySelectorAll('article h5');
     const links = document.querySelectorAll('.project-navigation a');
+
+    // Get the title element by its id — pass the slugified title into the script
+    const titleSlug = document.querySelector('.project-navigation a.title-link')?.getAttribute('href')?.slice(1);
+    const titleEl = titleSlug ? document.getElementById(titleSlug) : null;
 
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -35,53 +39,37 @@ const { title, headings } = Astro.props;
         });
     }, { rootMargin: '0px 0px -80% 0px' });
 
+    // Observe the title element if it exists,
+    if (titleEl) observer.observe(titleEl);
+
+    // Observe all headings as before
     headings.forEach(h => observer.observe(h));
 </script>
 <style>
-    .project-navigation-wrapper {
-        position: sticky;
-        height: fit-content;
-        top: 1rem;
-    }
-
-    @media (max-width: 100em) {
-        .project-navigation-wrapper {
-            display: none;
-        }
-    }
-
-    nav {
-        display: flex;
-        justify-content: flex-end;
-    }
-
     .project-navigation {
         list-style: none;
         margin: 0;
         padding: 0;
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
-        gap: 0.4rem;
+        gap: 0.1rem;
+        width: fit-content; /* shrinks to content so margin-left: auto has room to work */
     }
 
     .project-navigation li {
         display: block;
+        margin: 0;
+        padding: 0;
     }
 
     .project-navigation a {
         text-decoration: none;
         color: inherit;
+        font-size: var(--text-sm);
     }
 
     .project-navigation a.active {
         font-weight: bold;
-        color: var(--accent);
+        color: var(--accent-regular);
     }
-
-    /* Indent depth levels */
-    .project-navigation a.depth-2 { padding-right: 0; }
-    .project-navigation a.depth-3 { padding-right: 1rem; }
-    .project-navigation a.depth-4 { padding-right: 2rem; }
-
 </style>

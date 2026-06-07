@@ -1,0 +1,44 @@
+---
+interface Props {
+    src: string;
+    alt?: string;
+    poster?: string;
+    autoRotate?: boolean;
+    cameraControls?: boolean;
+    height?: string;
+}
+
+const {
+    src,
+    alt = "3D model",
+    poster,
+    autoRotate = true,
+    cameraControls = true,
+    height = "300"
+} = Astro.props;
+---
+
+<model-viewer
+        src={src}
+        alt={alt}
+        camera-orbit="0deg 75deg 5m"
+        poster={poster}
+        auto-rotate={autoRotate ? "" : undefined}
+        camera-controls={cameraControls? "" : undefined}
+        shadow-intensity="0"
+        style={`height: ${height}px`}
+        disable-zoom
+>
+</model-viewer>
+
+<script>
+    import "@google/model-viewer";
+</script>
+
+<style>
+    model-viewer{
+        width: 100%;
+        border: 1px solid #00000055;
+        border-radius: 30px;
+    }
+</style>

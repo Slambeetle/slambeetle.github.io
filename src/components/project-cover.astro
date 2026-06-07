@@ -1,0 +1,127 @@
+---
+import type {CollectionEntry} from "astro:content";
+
+interface Props {
+    entry: CollectionEntry<'projects'>['data'];
+}
+
+const { entry } = Astro.props;
+
+const VIDEO_EXTENSIONS = ['.mp4', '.MP4', '.webm', '.mov', '.avi', '.mkv'];
+const isVideo = VIDEO_EXTENSIONS.some(ext => entry.cover.endsWith(ext));
+---
+
+<div class="project-cover-main">
+    <div class="project-cover-wrapper">
+        <div class="project-cover-information-wrapper">
+            <div>
+                <h1>{entry.title}</h1>
+            </div>
+            <div class="tags">
+                {
+                    entry.tags.map(tag => (
+                            <div class="tag">{tag}</div>
+                    ))
+                }
+            </div>
+        </div>
+        <div class="desktop-only">
+            {isVideo
+                ? <video autoplay muted loop playsinline><source src={entry.cover} type="video/mp4"/></video>
+                : <img src={entry.cover} alt={entry.cover_alt} loading="lazy" decoding="async" />
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .project-cover-main {
+        padding: 0 var(--gap-half);
+    }
+
+    .project-cover-wrapper {
+        position: relative;
+        max-width: 2000px;
+        max-height: 750px;
+        overflow: hidden;
+        border-radius: 30px;
+        margin: 0 auto 60px;
+        box-shadow: var(--shadow-lg);
+    }
+
+    .project-cover-wrapper video,
+    .project-cover-wrapper img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        display: block;
+        border-radius: 30px;
+    }
+
+    .project-cover-information-wrapper {
+        display: flex;
+        justify-content: space-between; /* pushes h1 left, tags right */
+        align-items: flex-end;          /* aligns both to the bottom */
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 30px;
+        background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
+    }
+
+    .project-cover-information-wrapper h1 {
+        color: white;
+    }
+
+    .tags {
+        width:400px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-self: flex-end;
+        justify-content: flex-end;
+    }
+
+    .tag {
+        display: inline-block;
+        color: #FFFFFF;
+        font-weight: 600;
+        padding: 5px 30px;
+        align-content: center;
+        border-radius: 30px;
+        pointer-events: auto;
+        z-index: 3;
+        transition: background .3s;
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: inset 0 0.05em 0.125em rgba(0, 0, 0, 0.05),
+        inset 0 -0.1em 0.1em rgba(255, 255, 255, 0.3),
+        0 0 0.1em 0.1em inset rgba(255, 255, 255, 0.2),
+        0 0 0 0 rgba(255, 255, 255, 1);
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(clamp(1px, 0.125em, 2px));
+        -webkit-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+        -moz-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+        -ms-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+    }
+
+    .tag:hover {
+        background: rgba(255, 255, 255, 0.4);
+    }
+
+    @media (max-width: 768px) {
+        .project-cover-main {
+            padding: 0;
+        }
+
+        .project-cover-wrapper {
+            height: 500px;
+            border-radius: 0;
+        }
+
+        .project-cover-wrapper img,
+        .project-cover-wrapper video {
+            width: auto;
+        }
+    }
+</style>

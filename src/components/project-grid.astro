@@ -1,0 +1,20 @@
+---
+
+import ProjectPreview from "./project-preview.astro";
+const { projects } = Astro.props;
+
+---
+
+<section class="projects-grid-wrap">
+    {projects.map((project : any) => (
+            <ProjectPreview project={project} />
+    ))}
+</section>
+
+<style>
+    .projects-grid-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+</style>

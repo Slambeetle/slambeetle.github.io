@@ -1,0 +1,167 @@
+---
+import { type CollectionEntry } from "astro:content";
+import Base from "./Base.astro";
+import Cover from "../components/project-cover.astro"
+
+interface Props {
+    entry: CollectionEntry<'projects'>;
+    headings: { depth: number; slug: string; text: string }[];
+}
+
+const { entry, headings } = Astro.props;
+
+---
+<Base title={entry.data.title}>
+    <article class="project">
+        <Cover entry={entry.data} />
+        <div class="project-content">
+            <slot />
+        </div>
+    </article>
+</Base>
+
+<style>
+    :global(.content) {
+        margin-top: 1rem;
+    }
+
+    :global(.content > .sub-section) {
+        padding: 60px 0 0 0;
+    }
+
+    :global(.content h5) {
+        margin-bottom: var(--gap-quarter);
+        line-height: 125%;
+    }
+
+    :global(.content p) {
+        margin-bottom: var(--gap-quarter)
+    }
+
+    :global(hr) {
+        height: 1px;
+        color: var(--gray-300);
+        background: var(--gray-300);
+        font-size: 0;
+        border: 0;
+    }
+
+    :global(.profile-photo) {
+        text-align: center;
+        position: relative;
+        display: inline-block;
+    }
+
+    :global(.profile-photo img) {
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        display: block;
+        margin: 0 auto;
+        aspect-ratio: 1;
+        transition: filter 0.3s ease;
+    }
+
+    :global(.profile-name) {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        color: white;
+    }
+
+    :global(.profile-photo:hover .profile-name) {
+        opacity: 1;
+    }
+
+    :global(.profile-photo img:hover) {
+        filter: brightness(0.5);
+    }
+
+    :global(.grid) {
+        display: grid;
+        gap: var(--gap-quarter);
+    }
+
+    :global(#grid-2){
+        grid-template-columns: repeat(2, minmax(150px, max-content));
+    }
+
+    :global(#grid-3){
+        grid-template-columns: repeat(3, minmax(150px, max-content));
+    }
+
+    :global(.image-strip) {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: 1rem;
+        width: 2000px;
+        margin: 0 auto;
+    }
+
+    :global(.image-strip img) {
+        scroll-snap-align: center;
+        height: 520px;
+        object-fit: cover;
+        border-radius: 30px;
+        width: 100%;
+        flex-shrink: 0;
+        min-width: 0;
+    }
+
+    :global(.quote) {
+        display: flex;
+        justify-content: flex-end;
+        font-size: var(--text-xl);
+        line-height: 130%;
+    }
+
+    :global(.quote *) {
+        width: 760px;
+    }
+
+    :global(.columns) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--gap-full);
+    }
+    
+    @media (max-width: 992px) {
+        :global(.columns) {
+            display: block;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        :global(#grid-3) {
+            grid-template-columns: repeat(3, minmax(150px, max-content));
+        }
+    }
+
+    @media (max-width: 480px) {
+        :global(.profile-photo img) {
+            width: 120px;
+            height: 120px;
+            margin:0;
+            display: inline-block;
+        }
+
+        :global(.grid) {
+            gap: 0;
+        }
+
+        :global(.profile-name) {
+            position: relative;
+            text-align: center;
+            color: var(--gray-100);
+            transform: none;
+            left: 0;
+            top: 0;
+            opacity: 100;
+        }
+    }
+</style>

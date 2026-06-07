@@ -1,21 +1,13 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import ProjectPreview from '../components/project-preview.astro';
+import ProjectGrid from '../components/project-grid.astro';
 
 const projects = (await getCollection('projects')).sort(
     (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
 );
-
 ---
 
 <Base title="Projects">
-    <section class="projects">
-        <h1>Projects</h1>
-        {projects.map((project : any) => (
-           <li>
-               <ProjectPreview project={project}></ProjectPreview>
-           </li>
-        ))}
-    </section>
+    <ProjectGrid projects={projects}/>
 </Base>

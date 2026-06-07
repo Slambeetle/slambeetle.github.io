@@ -13,6 +13,10 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.6",
-    "astro": "^6.3.6"
+    "@google/model-viewer": "^4.2.0",
+    "@splidejs/splide": "^4.1.4",
+    "@splidejs/splide-extension-video": "^0.8.0",
+    "astro": "^6.3.6",
+    "image-compare-viewer": "^1.6.2"
   }
 }

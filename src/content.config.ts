@@ -12,12 +12,9 @@ const projects = defineCollection({
         type: z.string(),
         studio: z.string(),
         publishDate: z.coerce.date(),
-        images: z.array(
-            z.object({
-                src: z.string(),
-                alt: z.string().optional(),
-            })
-        ),
+        cover: z.string(),
+        cover_alt: z.string().optional(),
+        tags: z.array(z.coerce.string()),
     }),
 });
 

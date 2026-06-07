@@ -9,7 +9,7 @@ const { entry } = Astro.props;
 ---
 <div class="title-section">
     <div class="title-section-item">
-        <h2 class="title">{entry.title}</h2>
+        <h2 class="title" id={entry.title.toLowerCase().replace(/\s+/g, '-')}>{entry.title}</h2>
     </div>
     <div class="title-section-item">
         <ul class="information-items">
@@ -22,14 +22,20 @@ const { entry } = Astro.props;
 
 <style>
     .title-section-item {
-        padding-bottom: 50px;
+        padding-bottom: 4rem;
     }
 
     .title{
         margin-top:20rem;
     }
-
-    .information-items {
+    
+    @media (max-width: 100em) {
+        .title{
+            margin-top:1rem;
+        }
+    }
+    
+    .information-items {    
         margin: 0;
         padding: 0;
         display: flex;

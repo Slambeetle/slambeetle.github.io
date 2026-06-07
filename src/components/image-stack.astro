@@ -1,0 +1,29 @@
+---
+interface Props {
+    images: { src: string; alt: string }[];
+}
+
+const { images } = Astro.props;
+---
+
+<div class="image-stack-wrapper">
+    {images.map((img, i) => (
+        <img src={img.src} alt={img.alt} />
+    ))}
+</div>
+
+<style>
+    .image-stack-wrapper {
+        scroll-behavior: smooth;
+    }
+    .image-stack-wrapper:first-child{
+        padding: 0;
+    }
+
+    .image-stack-wrapper:first-child img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+</style>

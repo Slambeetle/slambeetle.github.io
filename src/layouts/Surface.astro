@@ -1,0 +1,46 @@
+---
+const { surface = 'light', background = "", type = "column" } = Astro.props;
+const wrapperClass = type === "column" ? "content-wrapper"
+                   : type === "full"   ? "full-bleed"
+                   : "content-wrapper";
+---
+
+<section class="content-full" data-surface={surface} style={`background-image: url(${background});`}>
+    <div class={wrapperClass}>
+        <slot />
+    </div>
+</section>
+
+<style>
+    .content-full {
+        padding: var(--gap-full) 0;
+        background-position: top center;
+        background-position-x: 35px;
+        background-position-y: 7px;
+    }
+
+    .content-wrapper {
+        max-width: 1220px;
+        margin: 0 auto;
+    }
+
+    .content-wrapper :global(h4) {
+        margin-bottom: var(--gap-half);
+        //margin-left: -15px;
+    }
+
+    .full-bleed {
+        overflow-x: auto;
+        width: 100%;
+    }
+
+    .full-bleed::-webkit-scrollbar {
+        display: none;
+    }
+
+    @media (max-width: 80em) {
+        .content-wrapper {
+            padding: 30px;
+        }
+    }
+</style>

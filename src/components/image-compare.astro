@@ -1,0 +1,299 @@
+---
+// ImageCompare.astro
+// Usage:
+//   <ImageCompare
+//     beforeSrc="/before.jpg"
+//     afterSrc="/after.jpg"
+//     beforeAlt="Before"
+//     afterAlt="After"
+//     initialPosition={50}
+//   />
+
+interface Props {
+    beforeSrc: string;
+    afterSrc: string;
+    beforeAlt?: string;
+    afterAlt?: string;
+    initialPosition?: number; // 0–100, default 50
+}
+
+const {
+    beforeSrc,
+    afterSrc,
+    beforeAlt = "Before",
+    afterAlt  = "After",
+    initialPosition = 50,
+} = Astro.props;
+---
+
+<div class="img-compare" data-initial={initialPosition} role="group" aria-label="Image comparison slider">
+    <!-- AFTER image (bottom layer, full width) -->
+    <div class="img-compare__layer img-compare__layer--after">
+        <img src={afterSrc} alt={afterAlt} draggable="false" />
+        <span class="tag img-compare__label--after">{afterAlt}</span>
+    </div>
+
+    <!-- BEFORE image (top layer, clipped) -->
+    <div class="img-compare__layer img-compare__layer--before">
+        <img src={beforeSrc} alt={beforeAlt} draggable="false" />
+        <span class="tag img-compare__label--before">{beforeAlt}</span>
+    </div>
+
+    <!-- Divider -->
+    <div class="img-compare__divider" role="separator">
+        <div class="img-compare__line"></div>
+        <button class="img-compare__handle" aria-label="Drag to compare images" aria-valuenow={initialPosition} aria-valuemin={0} aria-valuemax={100}>
+            <svg class="img-compare__arrows" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <!-- Left arrow -->
+                <path d="M15 20L8 20M8 20L12 16M8 20L12 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- Right arrow -->
+                <path d="M25 20L32 20M32 20L28 16M32 20L28 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </div>
+</div>
+
+<style>
+    /* ── Design tokens ─────────────────────────────────── */
+    .img-compare {
+        --ic-handle-size: 52px;
+        --ic-line-w: 1px;
+        --ic-label-font: "DM Mono", "Fira Mono", "Courier New", monospace;
+        --ic-accent: #f0e6d0;
+        --ic-accent-dark: #1a1712;
+        --ic-transition: 0ms;
+        box-shadow: var(--shadow-lg);
+    }
+
+    /* ── Container ─────────────────────────────────────── */
+    .img-compare {
+        position: relative;
+        display: block;
+        overflow: hidden;
+        cursor: col-resize;
+        user-select: none;
+        -webkit-user-select: none;
+        border-radius: 30px;
+        /* subtle warm shadow */
+        background: #111;
+        aspect-ratio: 16 / 9;
+        margin: 0 auto;
+        flex-shrink: 0;
+        min-width: 0;
+    }
+
+    /* ── Layers ────────────────────────────────────────── */
+    .img-compare__layer {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+    }
+
+    .img-compare__layer img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        pointer-events: none;
+        /* keep image sharp when clipping */
+        will-change: clip-path;
+    }
+
+    .img-compare__layer--after {
+        z-index: 1;
+    }
+
+    .img-compare__layer--before {
+        z-index: 2;
+        /* clipped to left side; value set by JS */
+        clip-path: inset(0 50% 0 0);
+        transition: clip-path var(--ic-transition) linear;
+    }
+
+    /* ── Labels ────────────────────────────────────────── */
+    .tag{
+        position: absolute;
+        color: #FFFFFF;
+        top: 18px;
+        font-weight: 600;
+        padding: 5px 30px;
+        border-radius: 30px;
+        pointer-events: auto;
+        z-index: 3;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+        background: linear-gradient(-75deg, rgba(255, 255, 255, 0.2));
+
+        box-shadow: inset 0 0.05em 0.125em rgba(0, 0, 0, 0.05),
+        inset 0 -0.1em 0.1em rgba(255, 255, 255, 0.3),
+        0 0 0.1em 0.1em inset rgba(255, 255, 255, 0.2),
+        0 0 0 0 rgba(255, 255, 255, 1);
+        backdrop-filter: blur(clamp(1px, 0.125em, 2px));
+        -webkit-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+        -moz-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+        -ms-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+    }
+
+    .img-compare__label--before {
+        left: 18px;
+    }
+
+    .img-compare__label--after {
+        right: 18px;
+    }
+
+    /* ── Divider ───────────────────────────────────────── */
+    .img-compare__divider {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        /* left set by JS */
+        left: 50%;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transform: translateX(-50%);
+        transition: left var(--ic-transition) linear;
+        pointer-events: none;
+    }
+
+    .img-compare__line {
+        flex: 1;
+        width: var(--ic-line-w);
+        background: var(--ic-accent);
+        box-shadow: 0 0 8px rgba(240,230,208,.25);
+    }
+
+    /* ── Handle button ─────────────────────────────────── */
+    .img-compare__handle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: all;
+        cursor: col-resize;
+
+        width: var(--ic-handle-size);
+        height: var(--ic-handle-size);
+        border-radius: 50%;
+        border: var(--ic-line-w) solid var(--ic-accent);
+        background: var(--ic-accent-dark);
+        color: var(--ic-accent);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        box-shadow:
+                0 0 0 4px rgba(240,230,208,.08),
+                0 4px 20px rgba(0,0,0,.5);
+
+        transition:
+                transform .2s cubic-bezier(.34,1.56,.64,1),
+                box-shadow .2s ease,
+                background .2s ease;
+    }
+
+    .img-compare__handle:hover,
+    .img-compare__handle:focus-visible {
+        transform: translate(-50%, -50%) scale(1.1);
+        box-shadow:
+                0 0 0 6px rgba(240,230,208,.14),
+                0 6px 28px rgba(0,0,0,.6);
+        outline: none;
+    }
+
+    .img-compare:active .img-compare__handle,
+    .img-compare__handle:active {
+        transform: translate(-50%, -50%) scale(0.96);
+        background: #2a2620;
+    }
+
+    .img-compare__arrows {
+        width: 26px;
+        height: 26px;
+        flex-shrink: 0;
+    }
+
+    /* ── Keyboard focus ring on container ─────────────── */
+    .img-compare:focus-within {
+        outline: 2px solid var(--ic-accent);
+        outline-offset: 3px;
+    }
+</style>
+
+<script>
+    // Runs once for every .img-compare on the page
+    document.querySelectorAll<HTMLElement>(".img-compare").forEach((root) => {
+        const beforeLayer = root.querySelector<HTMLElement>(".img-compare__layer--before")!;
+        const divider     = root.querySelector<HTMLElement>(".img-compare__divider")!;
+        const handle      = root.querySelector<HTMLButtonElement>(".img-compare__handle")!;
+
+        let position = Number(root.dataset.initial ?? 50);
+        let dragging = false;
+
+        // ── Apply position ─────────────────────────────────
+        function setPosition(pct: number, animate = false) {
+            pct = Math.max(0, Math.min(100, pct));
+            position = pct;
+
+            root.style.setProperty("--ic-transition", animate ? "80ms" : "0ms");
+            divider.style.left          = `${pct}%`;
+            beforeLayer.style.clipPath  = `inset(0 ${100 - pct}% 0 0)`;
+
+            handle.setAttribute("aria-valuenow", String(Math.round(pct)));
+        }
+
+        // Initialise without animation
+        setPosition(position, false);
+
+        // ── Pointer helpers ────────────────────────────────
+        function pctFromEvent(e: PointerEvent): number {
+            const rect = root.getBoundingClientRect();
+            return ((e.clientX - rect.left) / rect.width) * 100;
+        }
+
+        // ── Pointer events (mouse + touch via pointerId) ───
+        handle.addEventListener("pointerdown", (e: PointerEvent) => {
+            dragging = true;
+            handle.setPointerCapture(e.pointerId);
+            root.style.cursor = "col-resize";
+            e.preventDefault();
+        });
+
+        root.addEventListener("pointermove", (e: PointerEvent) => {
+            if (!dragging) return;
+            setPosition(pctFromEvent(e), false);
+        });
+
+        root.addEventListener("pointerup", () => {
+            dragging = false;
+            root.style.cursor = "";
+        });
+
+        root.addEventListener("pointercancel", () => {
+            dragging = false;
+            root.style.cursor = "";
+        });
+
+        // ── Click anywhere on root to jump ────────────────
+        root.addEventListener("click", (e: MouseEvent) => {
+            if (dragging) return;
+            const rect = root.getBoundingClientRect();
+            const pct  = ((e.clientX - rect.left) / rect.width) * 100;
+            setPosition(pct, true);
+        });
+
+        // ── Keyboard: ← → arrow keys on handle ────────────
+        handle.addEventListener("keydown", (e: KeyboardEvent) => {
+            const step = e.shiftKey ? 10 : 2;
+            if (e.key === "ArrowLeft")  { setPosition(position - step, true); e.preventDefault(); }
+            if (e.key === "ArrowRight") { setPosition(position + step, true); e.preventDefault(); }
+            if (e.key === "Home")       { setPosition(0,   true); e.preventDefault(); }
+            if (e.key === "End")        { setPosition(100, true); e.preventDefault(); }
+        });
+    });
+</script>

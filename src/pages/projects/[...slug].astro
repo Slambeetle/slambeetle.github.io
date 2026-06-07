@@ -1,9 +1,8 @@
 ---
 import { type CollectionEntry, getCollection, render } from "astro:content";
-import Base from "../../layouts/Base.astro";
-import ProjectNavigation from "../../layouts/Project-Navigation.astro";
-import ProjectTitle from "../../layouts/Project-Title.astro";
-import ProjectContent from "../../layouts/Project-Content.astro";
+import ProjectSplitLayout from "../../layouts/ProjectSplitLayout.astro";
+import ProjectFullLayout from "../../layouts/ProjectFullLayout.astro";
+
 
 interface Props {
     entry: CollectionEntry<'projects'>
@@ -19,100 +18,9 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content, headings} = await render(entry);
+
 ---
 
-<Base title={entry.data.title}>
-    <div class="project-content-container">
-        <div class="project-section" id="image-section">
-            {entry.data.images.map((img, i) => (
-                    <div class="carousel-slide" data-index={i}>
-                        <img src={img.src} alt={img.alt} />
-                    </div>
-            ))}
-        </div>
-        <div class="project-section">
-            <div class="project-section-inner">
-                <div class="project-content">
-                    <div class="project-inner-content">
-                        <ProjectTitle entry={entry.data}></ProjectTitle>
-                        <ProjectContent>
-                            <Content/>
-                        </ProjectContent>
-                    </div>
-                    <ProjectNavigation title={entry.data.title} headings={headings}></ProjectNavigation>
-                </div>
-            </div>
-        </div>
-    </div>
-</Base>
-
-<style>
-    .project-content-container {
-        display: flex;
-        height: calc(100vh - var(--nav-height));
-        overflow: hidden;
-    }
-
-    .project-section {
-        flex: 1;
-        height: 100%;
-        overflow-y: auto;
-    }
-
-    .project-section img {
-        width: 100%;
-        height: auto;
-        display: block;
-    }
-
-    .project-section-inner {
-        padding: 4rem 3rem 3rem 3rem;
-    }
-
-    .project-content {
-        display: grid;
-        grid-template-columns: 1fr 200px;
-        gap: 2rem;
-        align-items: start;
-    }
-
-    .project-inner-content {
-        display: grid;
-        grid-column: 1;
-        gap: 2rem;
-    }
-
-    @media (max-width: 100em) {
-        .project-content {
-            display: block;
-        }
-
-        .project-inner-navigation {
-            display: none;
-        }
-    }
-
-    #image-section:first-child{
-        padding: 0;
-    }
-
-    #image-section:first-child img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-    }
-
-    @media (max-width: 50em) {
-        .project-content-container {
-            flex-direction: column;
-            height: auto;
-            overflow: hidden;
-        }
-
-        .project-section {
-            height: auto;
-            overflow-y: visible;
-        }
-    }
-</style>
+<ProjectFullLayout entry={entry} headings={headings} >
+    <Content />
+</ProjectFullLayout>

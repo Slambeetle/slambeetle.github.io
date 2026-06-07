@@ -1,75 +1,198 @@
 ---
-title: Sonder, Vivid
+title: Sonder
 description: |
-  We developed a virtual showcase for the softest bedding imaginable.
+    Sonder was a light art installation created for Vivid, Sydney's internationally recognised light festival.
+    That year, Vivid reached a record 3.2 million visitors, hitting its biggest attendance record in history.
 year: 2023
 type:  Public Art
 studio: Self Produced
 publishDate: 2020-03-04 00:00:00
-images: 
-  - src: /assets/sonder-850.jpg
-    alt: looking up into the installations curving lights
-  - src: /assets/Artists.png
-    alt: the artists of the Sonder project
+cover: /assets/sonder/Sonder - Installation - Image 4.jpg
+cover_alt: Looking up at the bright colourful LED lights
+tags:
+  - Vivid
+  - 2023
+  - Artist
+  - Public Art
 ---
 
-<div class="qoute">
-> With each passing moment, We realise, We are not alone. Every random passerby Is living a life As colouful And complex As our own. Through shared experiences, We form connections, Enriching both our lives
-</div>
+import ModelViewer from '../../components/ModelViewer.astro';
+import ImageCompare from '../../components/image-compare.astro';
+import Surface from '../../layouts/Surface.astro';
+import DiagramTimeline from '../../components/diagram-timeline.astro';
+import DiagramLayer from '../../components/diagram-layer.astro';
+import Map from '../../components/project-map.astro';
+import Pano from '../../components/panorama-image.astro';
+import ImageCarousel from '../../components/image-carousel.astro';
+import StatisticsRow from '../../components/statistics.astro';
 
-***
-
-<div class="section">
-    ##### Location
-    <div class="section-grid">
-
-        As a central convergence point within the CBD, Circular Quay has the unique ability to connect people across inner and greater Sydney in one central location.
-
-        Whether arriving from a bus, train, ferry, light rail or through casual exploration, you arrive and become part of a central hub of activity.
-
-        As a threshold into Circular Quay, the location frames the harbour arrival from the south, creating a catalyst for you to pause and contemplate the lives of those moving around you, each as an individual yet intrinsically connected.
-
-        <img src="/assets/City-Plan.jpg" alt="Location" />
+<Surface>
+    <div class="quote">
+        With each passing moment, we realise, **we are not alone.** Every random passerby is living a life as **colouful** and **complex** as our own. Through **shared experiences**, we form **connections**, enriching both our lives and those around us.
     </div>
-</div>
+</Surface>
 
-***
+<Surface>
+    #### Concept
+    <div class="content">
+        <div class="columns">
+            <div>
+                Vivid 2023 arrived at a pivotal cultural moment when people were beginning to come out of COVID lockdown and back into society.
+                The festival's creative statement that year spoke directly to this:
 
-<div class="section">
-    ##### Connections
-    <div class="section-grid">
+                "...moving forward, to leave no one behind. To create moments of wonder that bring us together and shine the spotlight on what really matters — connection, authenticity, love, nature."
 
-        ‘Sonder’ is an inclusive artwork, providing an opportunity for all to enjoy and interact with. Situated in a highly trafficable area, its permeability has been carefully curated to ensure both day and night activation.
+                The deeper insight came from observing our behaviour post-lockdown. After lockdown, coming back into society, we were all still strangers, but had all shared in the same experience.
+                We formed a connection with people, without knowing them, but knowing we had a shared experience.
+                This idea of individual people, threads, coming together through a collective experience, swirling around in this new society, sparked the idea for Sonder.
+            </div>
+            <div>
+                Artists Michael, Joseph, and Brandon wanted to make something unapologetically Vivid, bold, full of light & colour, and undeniably cool. There was an intentionality here: a reminder of why people fell in love with the festival in the first place. They recognised a moment to reclaim that spectacle, that essential magic that made Vivid worth the crowds.
 
-        As a beacon of light, individual’s are drawn into the space from afar, experiencing the true scale of the artwork once immersed within the emanating swirls of light.
-
-        <img src="/assets/Accessiblilty.jpg" alt="accessibility" />
-
+                Artists
+                <div class="grid" id="grid-3">
+                    <div class="profile-photo" >
+                        <img src="/assets/sonder/artists/Sonder---Artist-Brandon.jpg" alt="sonder artist brandon" />
+                        <span class="profile-name">Brandon</span>
+                    </div>
+                    <div class="profile-photo" >
+                        <img src="/assets/sonder/artists/Sonder---Artist-Joseph.jpg" alt="sonder artist joseph" />
+                        <span class="profile-name">Joseph</span>
+                    </div>
+                    <div class="profile-photo" >
+                        <img src="/assets/sonder/artists/Sonder---Artist-Michael.jpg" alt="sonder artist michael" />
+                        <span class="profile-name">Michael</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</Surface>
 
-***
+<Surface type="full">
+    <ImageCarousel>
+        <li class="splide__slide" data-splide-html-video="/assets/sonder/Sonder-Video Snippet 01.MP4"><img src="/assets/sonder/Sonder - Installation - Image 5.jpg" alt="People moving under bright colourful LED lights" /></li>
+        <li class="splide__slide" data-splide-html-video="/assets/sonder/Sonder - Installation - Video 1.MP4"><img src="/assets/sonder/Sonder - Installation - Image 3.jpg" alt="Low to the ground view looking up at the bright colourful LED lights with a family about to take a photo" /></li>
+        <li class="splide__slide"><img src="/assets/sonder/havewheelchairwilltravel.jpg" alt="Man under Sonder artwork the with mobility assistance equipment." /></li>
+        <li class="splide__slide"><img src="/assets/sonder/Sonder - Installation - Image 6.jpg" alt="View looking through the LED poles with lots of people infront posing for photos" /></li>
+        <li class="splide__slide"><img src="/assets/sonder/Sonder - Artist Michael Display.jpg" alt="sonder-under-lights" /></li>
+    </ImageCarousel>
+</Surface>
 
-<div class="section">
-    ##### Installation
-    <div class="section-grid">
+<Surface>
+    #### Location
+    <div class="content">
+        <div class="columns">
+            <div>
+                ##### Circular Quay, Cahill Expressway
+                As a central convergence point within the CBD, Circular Quay has the unique ability to connect people across inner and greater Sydney in one central location.
 
-        Upon approach, you witness pulses of light above, spawning from a series of grounded ‘communities.’ They diverge from these centralised hubs across a series of swirls in the canopy above you.
+                Whether arriving from a bus, train, ferry, light rail or through casual exploration, you arrive and become part of a central hub of activity.
 
-        These suspended illuminated threads, weave through the air in their own journey, drawing a parallel to the unique individuals, which surround you in the day to day.
-
+                As a threshold into Circular Quay, the location frames the harbour arrival from the south, creating a catalyst for you to pause and contemplate the lives of those moving around you, each as an individual yet intrinsically connected.
+                <div style="margin-top:60px">
+                    <Pano src="/assets/sonder/Circular Quay - 360.jpg" alt="My panorama"/>
+                </div>
+            </div>
+            <Map
+                latitude={-33.861494}
+                longitude={151.211864}
+                caption="Cahill Expressway"
+                zoom={15}
+                height="600px"
+            />
+        </div>
     </div>
-</div>
+</Surface>
 
-***
+<Surface surface="dark">
+    #### Design
+    <div class="content">
+        <ImageCompare
+            beforeSrc="/assets/sonder/renders/Sonder - Render - Hero.jpg"
+            afterSrc="/assets/sonder/Sonder - Installation - Image 2.jpg"
+            beforeAlt="Concept, 2022"
+            afterAlt="Installation, 2023"
+            initialPosition={50}
+        />
+        <div class="sub-section">
+            <StatisticsRow
+                statistics={[
+                    { stat: '2.4M', name: 'Users' },
+                    { stat: '735m', name: 'LED Strips' },
+                    { stat: '92', name: 'Individual Threads' },
+                    { stat: '6min', name: 'Animation Sequence' }
+                ]}
+            />
+        </div>
+        <div class="sub-section">
+            ##### Sketch
+            <div class="columns">
+                <div>
+                    As a central convergence point within the CBD, Circular Quay has the unique ability to connect people across inner and greater Sydney in one central location.
 
-<div class="section">
-    ##### Animation
-    <div class="section-grid">
+                    Whether arriving from a bus, train, ferry, light rail or through casual exploration, you arrive and become part of a central hub of activity.
 
-        Our lives are not static, we move through life. We were cocooned in and now we spring back, alive and with every step, together, we bring back our communities momentum through life.
-
-        By incorporating sensors into the footings or mesh above, the artwork reacts to those around it, pulsing with light when approaching. Their light rises up into the vortex of other people’s lives, flowing with them, forming their own journey.
-
+                    As a threshold into Circular Quay, the location frames the harbour arrival from the south, creating a catalyst for you to pause and contemplate the lives of those moving around you, each as an individual yet intrinsically connected.
+                </div>
+                <ModelViewer
+                    src="/models/sonder/Vivid_2022_Website.glb"
+                    poster="/models/your-model-poster.webp"
+                    alt="Interactive 3D model of my project"
+                />
+            </div>
+        </div>
     </div>
-</div>
+</Surface>
+
+<Surface surface="dark" type="full">
+    <ImageCarousel>
+        <li class="splide__slide"><img src="/assets/sonder/renders/Sonder - Render - Hero.jpg" alt="Sonder hero render under Cahill Expressway" /></li>
+        <li class="splide__slide"><img src="/assets/sonder/renders/Sonder - Render - Close Up.jpg" alt="Sonder close up render looking towards the Sydney Harbour Bridge under the Cahill Expressway" /></li>
+        <li class="splide__slide"><img src="/assets/sonder/renders/Sonder - Render - Mother.jpg" alt="Looking through the light threads of Sonder at a mother holding her child" /></li>
+        <li class="splide__slide"><img src="/assets/sonder/renders/Sonder - Render - Crowd.jpg" alt="sonder-under-lights" /></li>
+    </ImageCarousel>
+</Surface>
+
+<Surface surface="light" background="/assets/sonder/GRID.png">
+    #### Construction
+    <DiagramTimeline>
+        <DiagramLayer src="/assets/sonder/diagram/footings.png" heading="Footings">
+            The baseplates serve as discrete anchoring systems for the light fixtures, integrating structural support with concealed electrical infrastructure.
+            Engineered for durability, they needed to withstand the rigors of a festival environment, from accidental impacts from the thousands of people coming and going, climbing children, weather such as wind or rain, while
+            maintaining absolute stability to ensure the light fixtures remain perfectly fixed throughout the installation's duration.
+
+            The form was continuously refined to achieve a minimal profile and natural aesthetic, without compromising the structural integrity essential to the installation's performance.
+        </DiagramLayer>
+
+        <DiagramLayer src="/assets/sonder/diagram/connections.png" heading="Connections & Accessiblity">
+            Positioned at the nexus of a major thoroughfare, the installation demanded careful spatial planning to maintain circulation flow.
+            Universal accessibility guided the design, with minimum clearances thoughtfully calibrated to ensure all visitors, including users with accessibility requirements, could navigate and experience the artwork without impediment.
+        </DiagramLayer>
+
+        <DiagramLayer src="/assets/sonder/diagram/poles.png"  heading="Poles">
+            The first 2 meters of the artwork were rigid LED tubes that were fixed to the base plates with a custom bracket system.
+            Extensive testing with the team's engineers was conducted to ensure stability in a variety of conditions such as wind loads and user interactions.
+        </DiagramLayer>
+
+        <DiagramLayer src="/assets/sonder/diagram/artwork.png"  heading="Artwork">
+            The artwork's infrastructure comprised an integrated network of LED threads, wired in concert to function as a unified system.
+            This architecture was carefully considered by [automated](https://automated.net.au/projects/vivid-2023-sonder/), enabling the artists to animate the installation in its entirety or in isolated sections,
+            offering expansive creative flexibility and real-time customisation of visual narrative.
+        </DiagramLayer>
+
+        <DiagramLayer src="/assets/sonder/diagram/mesh.png"  heading="Mesh">
+            The mesh was the invisible hero of the artwork, suspending almost all the technical infrastructure above people's heads.
+            Rigged by [Tri-Point](https://tripointrigging.com/project/vivid-sydney-2023/) and engineered by [Xavier Knight](https://xavierknight.com.au/vivid2023-sonder/)
+            the steel grid worked to provide flexibility to the artists to adjust the lighting, while also providing enough structure to support the great wind loads while holding the lights and electrical equipment.
+        </DiagramLayer>
+    </DiagramTimeline>
+</Surface>
+
+<Surface surface="light" type="full">
+    <ImageCarousel>
+        <li class="splide__slide"><img src="/assets/sonder/construction/Sonder - Construction - Image 1.jpg" alt="Sonder art installation almost completely built during the day time facing the harbour bridge" /></li>
+        <li class="splide__slide"><img src="/assets/sonder/construction/Sonder - Construction - Image 2.jpg" alt="The swirling LED lines on the structural mesh grid about to be raised up to the final height" /></li>
+        <li class="splide__slide"><img src="/assets/sonder/construction/Sonder - Construction - Image 3.jpg" alt="The 3 artists, Michael, Joseph and Brandon smiling at the camera while working on building Sonder" /></li>
+    </ImageCarousel>
+</Surface>
