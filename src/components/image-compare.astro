@@ -1,14 +1,4 @@
 ---
-// ImageCompare.astro
-// Usage:
-//   <ImageCompare
-//     beforeSrc="/before.jpg"
-//     afterSrc="/after.jpg"
-//     beforeAlt="Before"
-//     afterAlt="After"
-//     initialPosition={50}
-//   />
-
 interface Props {
     beforeSrc: string;
     afterSrc: string;
@@ -230,7 +220,7 @@ const {
     document.querySelectorAll<HTMLElement>(".img-compare").forEach((root) => {
         const beforeLayer = root.querySelector<HTMLElement>(".img-compare__layer--before")!;
         const divider     = root.querySelector<HTMLElement>(".img-compare__divider")!;
-        const handle      = root.querySelector<HTMLButtonElement>(".img-compare__handle")!;
+        const handle = root.querySelector<HTMLButtonElement>(".img-compare__handle")!;
 
         let position = Number(root.dataset.initial ?? 50);
         let dragging = false;
