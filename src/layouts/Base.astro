@@ -1,6 +1,6 @@
 ---
 import MainHead from "../components/main-head.astro"
-import Nav from "../components/nav.astro";
+import Header from "../components/Header.astro";
 
 interface Props {
     title?: string | undefined;
@@ -14,9 +14,7 @@ const { title, description } = Astro.props;
     <MainHead title={title} description={description}/>
 </head>
 <body>
-<header>
-    <Nav/>
-</header>
+<Header/>
 
 <main>
     <slot />

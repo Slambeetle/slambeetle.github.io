@@ -55,7 +55,6 @@ const isVideo = VIDEO_EXTENSIONS.some(ext => entry.cover.endsWith(ext));
         height: auto;
         object-fit: cover;
         display: block;
-        border-radius: 30px;
     }
 
     .project-cover-information-wrapper {
@@ -122,6 +121,7 @@ const isVideo = VIDEO_EXTENSIONS.some(ext => entry.cover.endsWith(ext));
         .project-cover-wrapper img,
         .project-cover-wrapper video {
             width: auto;
+            max-width: none;
         }
     }
 </style>

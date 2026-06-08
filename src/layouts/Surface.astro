@@ -1,8 +1,8 @@
 ---
 const { surface = 'light', background = "", type = "column" } = Astro.props;
-const wrapperClass = type === "column" ? "content-wrapper"
+const wrapperClass = type === "column" ? "content-wrapper container mx-auto"
                    : type === "full"   ? "full-bleed"
-                   : "content-wrapper";
+                   : "content-wrapper container mx-auto";
 ---
 
 <section class="content-full" data-surface={surface} style={`background-image: url(${background});`}>
@@ -20,13 +20,11 @@ const wrapperClass = type === "column" ? "content-wrapper"
     }
 
     .content-wrapper {
-        max-width: 1220px;
         margin: 0 auto;
     }
 
     .content-wrapper :global(h4) {
         margin-bottom: var(--gap-half);
-        //margin-left: -15px;
     }
 
     .full-bleed {
